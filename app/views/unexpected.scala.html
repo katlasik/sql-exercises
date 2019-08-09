@@ -1,0 +1,43 @@
+@import model.Unexpected
+@(result: Unexpected)
+<div class="table-responsive">
+    <table class="table table-bordered overflow-auto">
+        <thead>
+            <tr>
+                @for(header <- result.headers) {
+                    <th>@header</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+        @for(row <- result.results) {
+            <tr>
+            @for(value <- row) {
+                <td>@value</td>
+            }
+            </tr>
+        }
+        </tbody>
+    </table>
+    <div class="alert alert-warning" role="alert">
+        <p>Niepoprawne zapytanie! Oczekiwany wynik to:</p>
+        <table class="table table-bordered overflow-auto">
+            <thead>
+                <tr>
+                @for(header <- result.expectedHeaders) {
+                    <th>@header</th>
+                }
+                </tr>
+            </thead>
+            <tbody>
+            @for(row <- result.expectedResults) {
+                <tr>
+                @for(value <- row) {
+                    <td>@value</td>
+                }
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

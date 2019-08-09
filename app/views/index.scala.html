@@ -1,0 +1,47 @@
+@import services.ExercisesConfiguration.Exercises
+@(exercises: Exercises, pageIdx: Int, schema: String)(implicit request: RequestHeader)
+
+@main(exercises(pageIdx).map(_.name).getOrElse("")) {
+
+    <script id="schema" type="template/json">
+    @Html(schema)
+    </script>
+
+    <div class="container-fluid" id="wrapper">
+        <div class="row shadow-sm bg-white rounded p-1 m-2">
+            <header data-toggle="offcanvas" class="navbar navbar-light bg-light fixed-top">
+                <button class="navbar-toggler" type="button" data-toggle="offcanvas" data-target="#myNavmenu" data-canvas="body">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </header>
+
+            <nav data-target id="myNavmenu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
+                <ul class="nav navmenu-nav flex-column">
+                @for((section, idx) <- exercises.sections.zipWithIndex) {
+                    <li class="nav-item @Option.when(pageIdx == idx)("active").getOrElse("") ">
+                        <a class="nav-link" href="/@idx">@section.name</a>
+                    </li>
+                }
+                </ul>
+            </nav>
+
+            <div class="mt-5 container-fluid">
+            @for((exercise, idx) <- exercises(pageIdx).map(_.exercises).getOrElse(Nil).zipWithIndex) {
+                <section id="exercise-@idx" class="mb-5 mt-5 d-block" data-query="@pageIdx.@idx">
+                    <p>@Html(exercise.description)</p>
+                    <div class="input-group mb-3">
+                        <textarea></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <div data-submit class="fa-3x text-right">
+                            <button type="button" class="btn btn-lg btn-primary"><i class="fas fa-paper-plane"></i></button>
+                            <button type="button" class="d-none disabled btn btn-lg btn-primary"><i class="fas fa-spinner fa-spin"></i></button>
+                        </div>
+                    </div>
+                    <div data-close class="d-none"><i class="fas fa-times fa-2x"></i></div><div data-result></div>
+                </section>
+            }
+            </div>
+        </div>
+    </div>
+}

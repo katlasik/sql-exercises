@@ -1,0 +1,28 @@
+@(title: String)(content: Html)(implicit request: RequestHeader)
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>@title</title>
+        <link rel="stylesheet" href="@routes.Assets.versioned("lib/bootstrap/css/bootstrap.css")">
+        <link rel="stylesheet" href="@routes.Assets.versioned("lib/jasny-bootstrap/css/jasny-bootstrap.css")">
+        <link rel="stylesheet" href="@routes.Assets.versioned("lib/codemirror/lib/codemirror.css")">
+        <link rel="stylesheet" href="@routes.Assets.versioned("lib/font-awesome/css/fontawesome.css")">
+        <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/show-hint.css")">
+        <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/main.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+        <script defer src="@routes.Assets.versioned("lib/jquery/jquery.js")"></script>
+        <script defer src="@routes.Assets.versioned("lib/font-awesome/js/all.js")"></script>
+        <script defer src="@routes.Assets.versioned("lib/jasny-bootstrap/js/jasny-bootstrap.js")"></script>
+        <script defer src="@routes.Assets.versioned("lib/codemirror/lib/codemirror.js")"></script>
+        <script defer src="@routes.Assets.versioned("javascripts/addons/matchbrackets.js")"></script>
+        <script defer src="@routes.Assets.versioned("javascripts/addons/sql.js")"></script>
+        <script defer src="@routes.Assets.versioned("javascripts/addons/show-hint.js")"></script>
+        <script defer src="@routes.Assets.versioned("javascripts/addons/hint-sql.js")"></script>
+        <script defer src="@routes.Assets.versioned("javascripts/main.js")"></script>
+    </head>
+    <body>
+        @helper.CSRF.formField
+        @content
+    </body>
+</html>

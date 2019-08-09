@@ -1,0 +1,25 @@
+.btn.btn-lg {
+    min-width: 120px;
+}
+
+.CodeMirror {
+    border: 1px solid #eee;
+    width: 100%;
+    min-height: 100px;
+    height: 100%;
+}
+
+body {
+    counter-reset: sections;
+}
+
+section p:before {
+    font-weight: bold;
+    counter-increment: sections;
+    content: counter(sections) ". ";
+}
+
+[data-close] {
+    float: right;
+    cursor: pointer;
+}

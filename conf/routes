@@ -1,0 +1,6 @@
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+POST    /sql                        controllers.HomeController.sql
+
+GET     /:idx                       controllers.HomeController.index(idx: Int)
+GET     /                           controllers.Default.redirect(to = "/0")

@@ -1,0 +1,25 @@
+@import model.Succeded
+@(result: Succeded)
+<div class="table-responsive">
+    <table class="table table-bordered overflow-auto">
+        <thead>
+            <tr>
+                @for(header <- result.headers) {
+                    <th>@header</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @for(row <- result.results) {
+            <tr>
+                @for(value <- row) {
+                    <td>@value</td>
+                }
+            </tr>
+            }
+        </tbody>
+    </table>
+    <div class="alert alert-success" role="alert">
+       Brawo! Poprawny wynik!
+    </div>
+</div>
